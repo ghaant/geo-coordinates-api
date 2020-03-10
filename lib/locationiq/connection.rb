@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module LocationIQ
+module Locationiq
   class Connection
-    API_BASE = 'https://eu1.locationiq.com/v1/search.php'
+    API_BASE = 'https://eu1.locationiq.com/v1'
 
     def self.api
       Faraday.new(API_BASE) do |faraday|
