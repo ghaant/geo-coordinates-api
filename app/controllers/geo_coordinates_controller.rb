@@ -4,8 +4,6 @@ require './lib/locationiq/connection.rb'
 
 class GeoCoordinatesController < ApplicationController
   def locate
-    client = Locationiq::Client.new
-
     if params[:token].nil?
       response.status = 406
       render(json: { message: 'Please provide your access token.', status: response.status }) && return
@@ -14,7 +12,7 @@ class GeoCoordinatesController < ApplicationController
       render(json: { message: 'Please input the search value: an address or a name of a place you are searching for.', status: response.status }) && return
     end
 
-    response = client.coordinates(params[:token], params[:search_value])
+    response = Locationiq::Client.new.coordinates(params[:token], params[:search_value])
 
     if response.status == 401
       render(json: { message: 'There is a problem with your access token.', status: response.status }) && return
