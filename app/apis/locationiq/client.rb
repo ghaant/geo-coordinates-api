@@ -4,15 +4,21 @@ require './lib/locationiq/connection.rb'
 
 module Locationiq
   class Client
-    def coordinates(params)
-# params = {key: 'ce25d225926be5', format: 'json', q: 'teterower ring 6'}
-      get_request('search.php', params)
+    ENDPOINT = 'search.php'
+
+    def coordinates(token, address)
+      params = {
+        key: token,
+        format: 'json',
+        q: address
+      }
+      get_request(params)
     end
 
     private
 
-    def get_request(endpoint, params)
-      Locationiq::Connection.api.get(endpoint, params)
+    def get_request(params)
+      Locationiq::Connection.api.get(ENDPOINT, params)
     end
   end
 end
