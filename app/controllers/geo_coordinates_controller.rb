@@ -16,8 +16,10 @@ class GeoCoordinatesController < ApplicationController
 
     if response.status == 404
       render(json: { message: 'Nothing found. Please check the search value and try again.', status: 404 }) && return
-    elsif JSON.parse(response.body).length > 1
+    elsif response.status == 200 && JSON.parse(response.body).length > 1
       render(json: { message: 'There are more than one result for this request. Please put it more specificly.', status: 400 }) && return
+    elsif response.status != 200
+      render(json: { message: 'There is something wrong with LocationIQ service. Please try again later.', status: 500 }) && return
     end
 
     location = JSON.parse(response.body).first
