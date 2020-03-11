@@ -14,7 +14,9 @@ class GeoCoordinatesController < ApplicationController
 
     response = client.coordinates(params[:token], params[:search_value])
 
-    if response.status == 404
+    if response.status == 401
+      render(json: { message: 'There ia a problem with your access token.', status: 401 }) && return
+    elsif response.status == 404
       render(json: { message: 'Nothing found. Please check the search value and try again.', status: 404 }) && return
     elsif response.status == 200 && JSON.parse(response.body).length > 1
       render(json: { message: 'There are more than one result for this request. Please put it more specificly.', status: 400 }) && return
