@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require './lib/locationiq/connection.rb'
+
 class GeoCoordinatesController < ApplicationController
   def locate
     client = Locationiq::Client.new
