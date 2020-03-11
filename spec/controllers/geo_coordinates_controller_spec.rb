@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GeoCoordinatesController, type: :controller do
-  let!(:incorrect_token) { 'qwerty' }
-  let!(:incorrect_search_value) { 'lkjhgfd' }
-  let!(:ambiguous_search_value) { 'checkpoint charlie' }
-
   it 'returns 406 with a respective message if no token is provided' do
     get 'locate'
 
