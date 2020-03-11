@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require './lib/locationiq/connection.rb'
+
 module Locationiq
   class Client
     ENDPOINT = 'search.php'
