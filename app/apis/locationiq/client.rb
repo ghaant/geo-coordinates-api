@@ -6,11 +6,11 @@ module Locationiq
   class Client
     ENDPOINT = 'search.php'
 
-    def coordinates(token, address)
+    def coordinates(token, search_value)
       params = {
         key: token,
         format: 'json',
-        q: address
+        q: search_value
       }
       get_request(params)
     end
