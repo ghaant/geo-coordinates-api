@@ -11,8 +11,10 @@ class GeoCoordinatesController < ApplicationController
     end
 
     response = client.coordinates(params[:token], params[:search_value])
+    location = JSON.parse(response.body).first
 
-    render json: { latitude: JSON.parse(response.body).first['lat'],
-                   longitude: JSON.parse(response.body).first['lon'] }
+    render json: { location: location['display_name'],
+                   latitude: location['lat'],
+                   longitude: location['lon'] }
   end
 end
