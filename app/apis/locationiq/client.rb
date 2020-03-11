@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-
-
 module Locationiq
   class Client
     ENDPOINT = 'search.php'
